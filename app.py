@@ -23,55 +23,65 @@ st.set_page_config(
 # Glassmorphism + responsive/mobile styles
 st.markdown(r"""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap');
-:root { --ink:#172033; --muted:#475569; --line:#CBD5E1; --panel:#FFFFFF; }
-html, body, [class*="css"] { font-family:'DM Sans','Noto Sans KR',sans-serif; color:#172033; }
-.stApp { color:#172033; background:#F3F6FA; }
-[data-testid="stHeader"] { background:#F3F6FA; }
-[data-testid="stAppViewContainer"] > .main { background:#F3F6FA; }
-.block-container { max-width:1180px; padding-top:1.25rem; padding-bottom:5rem; }
-.hero { padding:1.25rem 1.35rem; border:1px solid #CBD5E1; border-radius:20px; background:#FFFFFF; box-shadow:0 4px 16px rgba(15,23,42,.08); margin-bottom:1rem; }
-.eyebrow { color:#1D4ED8; letter-spacing:.08em; text-transform:uppercase; font-size:.76rem; font-weight:800; }
-.hero h1 { color:#111827; font-size:clamp(1.65rem,4vw,2.6rem); line-height:1.12; margin:.35rem 0 .5rem 0; }
-.hero p { color:#334155; margin:0; font-size:.98rem; }
-.glass-card { border:1px solid #CBD5E1; border-radius:16px; padding:1rem 1.1rem; background:#FFFFFF; box-shadow:0 3px 12px rgba(15,23,42,.06); height:100%; }
-.kpi-label { color:#334155; font-size:.84rem; font-weight:700; margin-bottom:.35rem; }
-.kpi-value { color:#111827; font-size:clamp(1.25rem,3.5vw,1.9rem); font-weight:800; letter-spacing:-.02em; overflow-wrap:anywhere; }
-.kpi-sub { color:#475569; font-size:.8rem; margin-top:.3rem; }
-.section-title { color:#111827; font-size:1.12rem; font-weight:800; margin:.6rem 0 .65rem; }
-.small-note { color:#334155; font-size:.86rem; line-height:1.6; }
-div[data-testid="stForm"], div[data-testid="stExpander"], div[data-testid="stDataFrame"], div[data-testid="stTable"] { border:1px solid #CBD5E1; border-radius:14px; background:#FFFFFF; }
-[data-testid="stExpander"] summary, [data-testid="stExpander"] summary p { color:#172033 !important; font-weight:700; }
-.stButton > button, .stDownloadButton > button { width:100%; border-radius:12px; min-height:3rem; font-weight:800; border:1px solid #1D4ED8; background:#1D4ED8; color:#FFFFFF; box-shadow:0 3px 8px rgba(29,78,216,.16); }
-.stButton > button:hover, .stDownloadButton > button:hover { border-color:#1E40AF; background:#1E40AF; color:#FFFFFF; }
-[data-testid="stMetric"] { background:#FFFFFF; border:1px solid #CBD5E1; padding:1rem; border-radius:14px; }
-[data-testid="stMetricLabel"], [data-testid="stMetricLabel"] p { color:#334155 !important; font-weight:700 !important; }
-[data-testid="stMetricValue"], [data-testid="stMetricValue"] div { color:#111827 !important; }
-.stTextInput label, .stNumberInput label, .stSelectbox label, .stRadio label, .stCheckbox label, .stMultiSelect label { color:#172033 !important; font-weight:700 !important; }
-.stTextInput input, .stNumberInput input, .stSelectbox [data-baseweb="select"] { border-radius:10px; background:#FFFFFF !important; color:#111827 !important; border-color:#94A3B8 !important; }
-.stTextInput input::placeholder { color:#64748B !important; opacity:1; }
-[data-baseweb="select"] * { color:#111827 !important; }
-[data-testid="stCaptionContainer"], [data-testid="stCaptionContainer"] p, .stMarkdown, .stMarkdown p, .stMarkdown li { color:#172033; }
-hr { border-color:#CBD5E1; }
-[data-testid="stAlert"] { border-radius:14px; }
-[data-testid="stDataFrame"] *, [data-testid="stTable"] * { color:#172033; }
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap');
+:root { --ink:#F5F7FF; --muted:#C4CEE8; --line:rgba(255,255,255,.19); --glass:rgba(255,255,255,.095); --cyan:#76E4F7; --violet:#B7A3FF; }
+html, body, [class*="css"] { font-family:'DM Sans','Noto Sans KR',sans-serif; }
+.stApp { color:var(--ink); background:radial-gradient(ellipse at 12% 5%,rgba(74,92,190,.38),transparent 35%),radial-gradient(ellipse at 90% 22%,rgba(0,193,204,.20),transparent 32%),linear-gradient(135deg,#080D1D 0%,#101A36 48%,#0B1830 100%); background-attachment:fixed; }
+[data-testid="stHeader"] { background:rgba(8,13,29,.28); }
+[data-testid="stAppViewContainer"] { background:transparent; }
+.block-container { max-width:1180px; padding-top:1.35rem; padding-bottom:5rem; }
+.hero { position:relative; overflow:hidden; padding:1.6rem 1.65rem; border:1px solid rgba(255,255,255,.23); border-radius:26px; background:linear-gradient(125deg,rgba(255,255,255,.15),rgba(255,255,255,.045)); box-shadow:0 18px 55px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.17); backdrop-filter:blur(22px); -webkit-backdrop-filter:blur(22px); margin-bottom:1.15rem; }
+.hero:after { content:''; position:absolute; width:230px;height:230px;right:-55px;top:-100px;border-radius:50%;background:radial-gradient(circle,rgba(118,228,247,.28),rgba(183,163,255,.06) 68%,transparent 70%);pointer-events:none; }
+.eyebrow { color:var(--cyan); letter-spacing:.13em; text-transform:uppercase; font-size:.73rem; font-weight:800; }
+.hero h1 { color:#FFFFFF; font-size:clamp(1.8rem,4vw,2.8rem); line-height:1.15; margin:.5rem 0 .6rem; letter-spacing:-.04em; }
+.hero p { color:#D7E0F7; margin:0; font-size:.96rem; line-height:1.7; }
+.glass-card { border:1px solid rgba(255,255,255,.18); border-radius:20px; padding:1.1rem 1.2rem; background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.055)); box-shadow:0 12px 32px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.11); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); height:100%; }
+.kpi-label { color:#D3DDF6; font-size:.83rem; font-weight:700; margin-bottom:.4rem; }
+.kpi-value { color:#FFFFFF; font-size:clamp(1.25rem,3.5vw,1.9rem); font-weight:800; letter-spacing:-.025em; overflow-wrap:anywhere; }
+.kpi-sub { color:#AEBFE1; font-size:.78rem; margin-top:.38rem; line-height:1.5; }
+.section-title { color:#F5F7FF; font-size:1.12rem; font-weight:800; margin:.85rem 0 .7rem; letter-spacing:-.015em; }
+.small-note { color:#C8D4EF; font-size:.86rem; line-height:1.65; }
+/* Glass containers */
+div[data-testid="stForm"], div[data-testid="stExpander"], div[data-testid="stDataFrame"], div[data-testid="stTable"] { border:1px solid rgba(255,255,255,.17); border-radius:18px; background:rgba(255,255,255,.065); box-shadow:0 10px 28px rgba(0,0,0,.13); }
+[data-testid="stExpander"] summary, [data-testid="stExpander"] summary p { color:#F5F7FF !important; font-weight:750 !important; }
+[data-testid="stExpander"] [data-testid="stMarkdownContainer"], [data-testid="stExpander"] p { color:#DCE5FA; }
+.stButton > button, .stDownloadButton > button, [data-testid="stFormSubmitButton"] button { width:100%; border-radius:14px; min-height:3.15rem; font-weight:800; border:1px solid rgba(118,228,247,.65); background:linear-gradient(110deg,#5E70E8,#4A9FEA 60%,#37BFC8); color:#FFFFFF; box-shadow:0 8px 24px rgba(69,123,230,.27); transition:transform .18s ease,box-shadow .18s ease; }
+.stButton > button:hover, .stDownloadButton > button:hover, [data-testid="stFormSubmitButton"] button:hover { border-color:#B7F4FF; background:linear-gradient(110deg,#7180F7,#58B0F2 60%,#45D2D5); color:#FFFFFF; transform:translateY(-1px); box-shadow:0 12px 30px rgba(69,150,230,.34); }
+[data-testid="stMetric"] { background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.055)); border:1px solid rgba(255,255,255,.17); padding:1rem; border-radius:17px; box-shadow:inset 0 1px 0 rgba(255,255,255,.08); }
+[data-testid="stMetricLabel"], [data-testid="stMetricLabel"] p { color:#C9D6F1 !important; font-weight:700 !important; }
+[data-testid="stMetricValue"], [data-testid="stMetricValue"] div { color:#FFFFFF !important; }
+[data-testid="stMetricDelta"] { color:#C9D6F1 !important; }
+.stTextInput label, .stNumberInput label, .stSelectbox label, .stRadio label, .stCheckbox label, .stMultiSelect label, [data-testid="stWidgetLabel"] p { color:#E4EBFC !important; font-weight:700 !important; }
+.stTextInput input, .stNumberInput input, .stSelectbox [data-baseweb="select"], [data-baseweb="input"] input { border-radius:12px; background:rgba(245,248,255,.97) !important; color:#17213B !important; border:1px solid rgba(196,211,245,.9) !important; }
+.stTextInput input::placeholder { color:#687694 !important; opacity:1; }
+[data-baseweb="select"] * { color:#17213B !important; }
+[data-baseweb="popover"] *, [role="listbox"] * { color:#17213B !important; }
+[data-testid="stCaptionContainer"], [data-testid="stCaptionContainer"] p { color:#B9C8E8 !important; }
+.stMarkdown, .stMarkdown p, .stMarkdown li { color:#E1E9FB; }
+.stMarkdown strong, .stMarkdown b { color:#FFFFFF; }
+hr { border-color:rgba(255,255,255,.18); }
+[data-testid="stAlert"] { border-radius:15px; }
+[data-testid="stDataFrame"] *, [data-testid="stTable"] * { color:#E8EEFC; }
+[data-testid="stDataFrame"] { background:rgba(255,255,255,.96); }
+[data-testid="stDataFrame"] * { color:#17213B !important; }
+[data-testid="stJson"] { color:#E0E9FC; }
 footer { visibility:hidden; }
-@media (max-width: 680px) {
- .block-container { padding: .7rem .7rem 4rem .7rem; }
- .hero { padding:1rem; border-radius:16px; }
- .glass-card { padding:.85rem; border-radius:14px; }
- h2 { font-size:1.15rem !important; }
- h3 { font-size:1rem !important; }
- [data-testid="stMetric"] { padding:.75rem; }
+@media (max-width:680px) {
+ .block-container { padding:.7rem .65rem 4rem; }
+ .hero { padding:1.15rem 1rem; border-radius:20px; }
+ .glass-card { padding:.9rem; border-radius:16px; }
+ h2 { font-size:1.15rem !important; } h3 { font-size:1rem !important; }
+ [data-testid="stMetric"] { padding:.8rem; }
  .stDataFrame, [data-testid="stTable"] { overflow-x:auto; }
 }
+@media (prefers-reduced-motion:reduce) { * { transition:none !important; } }
 </style>
 """, unsafe_allow_html=True)
 
 st.markdown("""
 <div class="hero">
   <div class="eyebrow">STOCK GLASS · PERSONAL QUANT WORKBENCH</div>
-  <h1>급등주 진단 <span style="color:#1D4ED8">v4.0</span></h1>
+  <h1>급등주 진단 <span style="background:linear-gradient(90deg,#76E4F7,#B7A3FF);-webkit-background-clip:text;background-clip:text;color:transparent">v4.0</span></h1>
   <p>모바일·PC 반응형 화면 · 워크포워드 검증 · 최종 홀드아웃 · 비용 반영</p>
 </div>
 """, unsafe_allow_html=True)
@@ -113,8 +123,8 @@ result = st.session_state.get("analysis_result")
 if result:
     judgement = result.get("operating_judgement", {})
     status = judgement.get("판정", result.get("latest_signal", "관찰"))
-    status_color = {"매수검토":"#047857", "관찰":"#92400E", "매수제외":"#B91C1C"}.get(status, "#c1cde2")
-    st.markdown(f"<div class='glass-card' style='margin:.8rem 0 1rem;border-color:{status_color}55'><div class='eyebrow'>LATEST DIAGNOSIS · {result['data_end']}</div><div style='font-size:clamp(1.5rem,5vw,2.2rem);font-weight:800;color:{status_color};margin:.3rem 0'>{status}</div><div style='color:#334155'>{result['stock_name']} ({result['symbol']}) · {result['currency_label']}</div><div class='small-note' style='margin-top:.6rem'>모델 점수 {result['latest_probability']:.1f}% · 정밀도 기준 임계값 {result['optimal_threshold']:.1f}% · 원시 신호: {result.get('raw_model_signal','확인 불가')}</div></div>", unsafe_allow_html=True)
+    status_color = {"매수검토":"#76F0C5", "관찰":"#FFD479", "매수제외":"#FF929F"}.get(status, "#D9E4FF")
+    st.markdown(f"<div class='glass-card' style='margin:.8rem 0 1rem;border-color:{status_color}55'><div class='eyebrow'>LATEST DIAGNOSIS · {result['data_end']}</div><div style='font-size:clamp(1.5rem,5vw,2.2rem);font-weight:800;color:{status_color};margin:.3rem 0'>{status}</div><div style='color:#DCE5FA'>{result['stock_name']} ({result['symbol']}) · {result['currency_label']}</div><div class='small-note' style='margin-top:.6rem'>모델 점수 {result['latest_probability']:.1f}% · 정밀도 기준 임계값 {result['optimal_threshold']:.1f}% · 원시 신호: {result.get('raw_model_signal','확인 불가')}</div></div>", unsafe_allow_html=True)
 
     st.markdown("<div class='section-title'>핵심 지표</div>", unsafe_allow_html=True)
     close_text = model.format_price(result.get("latest_close"), result["symbol"])
