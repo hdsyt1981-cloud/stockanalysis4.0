@@ -7,11 +7,26 @@ import os
 import tempfile
 from pathlib import Path
 
+#추가
+import sys
+import sklearn
+import xgboost
+#추가
+
 import numpy as np
 import pandas as pd
 import streamlit as st
 
 import stock_analysis_v4_0 as model
+
+#추가
+st.write("===== 실행 환경 확인 =====")
+st.write("Python:", sys.version)
+st.write("NumPy:", np.__version__)
+st.write("Pandas:", pd.__version__)
+st.write("Scikit-learn:", sklearn.__version__)
+st.write("XGBoost:", xgboost.__version__)
+#추가
 
 st.set_page_config(
     page_title="Stock Glass · v4.0",
