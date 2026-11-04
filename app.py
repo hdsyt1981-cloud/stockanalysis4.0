@@ -20,6 +20,15 @@ import streamlit as st
 import stock_analysis_v4_0 as model
 
 #추가
+import hashlib
+
+engine_path = Path(model.__file__)
+
+st.write("엔진 파일:", str(engine_path))
+st.write("엔진 SHA256:", hashlib.sha256(engine_path.read_bytes()).hexdigest())
+#추가
+
+#추가
 st.write("===== 실행 환경 확인 =====")
 st.write("Python:", sys.version)
 st.write("NumPy:", np.__version__)
